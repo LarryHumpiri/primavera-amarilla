@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Volume2, VolumeX, MousePointerClick, X } from "lucide-react";
+import { Sparkles, Volume2, VolumeX, MousePointerClick } from "lucide-react";
 
 
 export default function PrimaveraAmarilla() {
