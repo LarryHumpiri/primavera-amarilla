@@ -198,72 +198,84 @@ export default function PrimaveraAmarilla() {
   );
 
   // Carta desplegable con logo y tono integrado
-  const ScrollLetter = ({ children }: { children: any }) => (
-    <motion.div
-      initial={{ y: 60, scale: 0.96, opacity: 0 }}
-      animate={{ y: 0, scale: 1, opacity: 1 }}
-      exit={{ y: 60, scale: 0.96, opacity: 0 }}
-      transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative mx-auto max-w-3xl rounded-[22px] border border-amber-300/70 shadow-2xl overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(120% 80% at 50% 0%, #fff5da 0%, #fbeac7 55%, #f7dfb7 100%)",
-      }}
-    >
-      {/* textura */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(0,0,0,0.06),transparent_35%),radial-gradient(circle_at_90%_90%,rgba(0,0,0,0.06),transparent_35%)]"/>
-      <div className="relative p-7 md:p-12">
-        <div className="flex items-center justify-center">
-          <div className="h-px w-16 bg-amber-600/30"/>
-          <div className="mx-3 text-amber-800 tracking-[0.3em] font-semibold text-xs md:text-sm">VERNALIS</div>
-          <div className="h-px w-16 bg-amber-600/30"/>
-        </div>
-        <h3 className="text-center mt-3 text-3xl md:text-4xl font-serif font-bold text-amber-800">Carta de Primavera</h3>
-
-        <div className="mt-6 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
-          <span className="float-left text-5xl md:text-6xl font-bold pr-2 leading-[0.8] text-amber-700">C</span>
-          uando el día se hace más largo y el cielo huele a estreno, la tierra recuerda su viejo truco: florecer. No hay hechizo más antiguo ni más nuevo que este. Una luz se posa en tu hombro y todo lo cotidiano se vuelve extraordinario.
-        </div>
-        <p className="mt-4 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
-          Que esta estación te encuentre con el alma abierta: que te rías sin miedo, que camines ligero, que lo que anhelas encuentre camino. Si alguna vez dudas, mira un pétalo: también fue semilla, también tembló.
-        </p>
-        <p className="mt-4 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
-          Hoy te dejo flores amarillas para que recuerdes que la alegría es terca y vuelve, siempre vuelve. Si hay viento, que te empuje. Si hay sol, que te nombre.
-        </p>
-
-        {/* firma con tu logo integrado al tono pergamino */}
-        <div className="mt-8 flex items-end justify-end gap-4">
-          <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden shadow" style={{
-            background: "linear-gradient(135deg,#FFE0B2,#FFCC80)",
-            border: "2px solid #D7A86E"
-          }}>
-            <img
-              src="/lions-logo.png"
-              alt="Lions King"
-              className="w-full h-full object-cover"
-              style={{
-                mixBlendMode: "multiply" as any,
-                filter: "grayscale(0.15) sepia(0.35) saturate(0.95) hue-rotate(-10deg) brightness(1.02)",
-                opacity: 0.95
-              }}
-            />
-          </div>
-          <div className="text-right">
-            <div className="text-xl md:text-2xl font-serif font-semibold text-amber-900">Con mucho cariño,</div>
-            <div className="-mt-1 text-2xl md:text-3xl italic text-amber-800">Lions King</div>
-          </div>
-        </div>
-
-        {/* botón cerrar */}
-        <button
-          onClick={() => setLetterOpen(false)}
-          className="absolute top-4 right-4 inline-flex items-center gap-1 px-3 py-2 rounded-full bg-amber-600/90 hover:bg-amber-700 text-white text-xs shadow"
-        >
-          <X className="w-3 h-3"/> Cerrar
-        </button>
+// Carta desplegable con logo y tono integrado
+const ScrollLetter: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
+  <motion.div
+    initial={{ y: 60, scale: 0.96, opacity: 0 }}
+    animate={{ y: 0, scale: 1, opacity: 1 }}
+    exit={{ y: 60, scale: 0.96, opacity: 0 }}
+    transition={{ duration: 0.9, ease: "easeOut" }}
+    className="relative mx-auto max-w-3xl rounded-[22px] border border-amber-300/70 shadow-2xl overflow-hidden"
+    style={{
+      background:
+        "radial-gradient(120% 80% at 50% 0%, #fff5da 0%, #fbeac7 55%, #f7dfb7 100%)",
+    }}
+  >
+    {/* textura */}
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(0,0,0,0.06),transparent_35%),radial-gradient(circle_at_90%_90%,rgba(0,0,0,0.06),transparent_35%)]" />
+    <div className="relative p-7 md:p-12">
+      <div className="flex items-center justify-center">
+        <div className="h-px w-16 bg-amber-600/30" />
+        <div className="mx-3 text-amber-800 tracking-[0.3em] font-semibold text-xs md:text-sm">VERNALIS</div>
+        <div className="h-px w-16 bg-amber-600/30" />
       </div>
-    </motion.div>
-  );
+      <h3 className="text-center mt-3 text-3xl md:text-4xl font-serif font-bold text-amber-800">
+        Carta de Primavera
+      </h3>
+
+      {/* Si vienen children, muéstralos; si no, usa el texto por defecto */}
+      {children ? (
+        <div className="mt-6 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
+          {children}
+        </div>
+      ) : (
+        <>
+          <div className="mt-6 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
+            <span className="float-left text-5xl md:text-6xl font-bold pr-2 leading-[0.8] text-amber-700">C</span>
+            uando el día se hace más largo y el cielo huele a estreno, la tierra recuerda su viejo truco: florecer. No hay hechizo más antiguo ni más nuevo que este. Una luz se posa en tu hombro y todo lo cotidiano se vuelve extraordinario.
+          </div>
+          <p className="mt-4 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
+            Que esta estación te encuentre con el alma abierta: que te rías sin miedo, que camines ligero, que lo que anhelas encuentre camino. Si alguna vez dudas, mira un pétalo: también fue semilla, también tembló.
+          </p>
+          <p className="mt-4 text-amber-900/95 font-serif tracking-wide leading-relaxed text-lg md:text-xl">
+            Hoy te dejo flores amarillas para que recuerdes que la alegría es terca y vuelve, siempre vuelve. Si hay viento, que te empuje. Si hay sol, que te nombre.
+          </p>
+        </>
+      )}
+
+      {/* firma con tu logo */}
+      <div className="mt-8 flex items-end justify-end gap-4">
+        <div
+          className="relative w-[68px] h-[68px] rounded-full overflow-hidden shadow"
+          style={{ background: "linear-gradient(135deg,#FFE0B2,#FFCC80)", border: "2px solid #D7A86E" }}
+        >
+          <img
+            src="/lions-logo.png"
+            alt="Lions King"
+            className="w-full h-full object-cover"
+            style={{
+              mixBlendMode: "multiply" as any,
+              filter: "grayscale(0.15) sepia(0.35) saturate(0.95) hue-rotate(-10deg) brightness(1.02)",
+              opacity: 0.95,
+            }}
+          />
+        </div>
+        <div className="text-right">
+          <div className="text-xl md:text-2xl font-serif font-semibold text-amber-900">Con mucho cariño,</div>
+          <div className="-mt-1 text-2xl md:text-3xl italic text-amber-800">Lions King</div>
+        </div>
+      </div>
+
+      <button
+        onClick={() => setLetterOpen(false)}
+        className="absolute top-4 right-4 inline-flex items-center gap-1 px-3 py-2 rounded-full bg-amber-600/90 hover:bg-amber-700 text-white text-xs shadow"
+      >
+        Cerrar
+      </button>
+    </div>
+  </motion.div>
+);
+
 
   return (
     <div className="min-h-screen w-full overflow-hidden" style={{background:"linear-gradient(to bottom,#FFF8E1,#FFFDE7)"}}>
